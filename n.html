@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>section edu Elevate Youth - سیستەمی فۆرم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-dark: #1b5e20;
+            --light-green: #e8f5e9;
+            --white: #ffffff;
+            --gray-bg: #f4f6f8;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-bg);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 650px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--light-green);
+            padding-bottom: 15px;
+        }
+
+        .header-section h2 {
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .header-section p {
+            color: var(--primary-dark);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 13px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(46, 125, 50, 0.2);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .section-view {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .rep-container {
+            background-color: var(--light-green);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+
+        .rep-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .logout-btn {
+            background-color: #d32f2f;
+            margin-top: 20px;
+        }
+        .logout-btn:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h2>section edu Elevate Youth</h2>
+            <p>هۆبەی رێکخستنی زانکۆ و پەیمانگاکان</p>
+        </div>
+
+        <!-- 1. پەڕەی چوونەژوورەوە (تەنها پاسۆرد) -->
+        <div id="login-section" class="section-view active">
+            <h3 style="margin-bottom: 15px; color: var(--primary-color); text-align: center; font-size: 18px;">چوونەژوورەوە بۆ فۆرم</h3>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>پاسۆردی چوونەژوورەوە</label>
+                    <input type="password" id="login-password" required placeholder="پاسۆرد بنووسە">
+                </div>
+                <button type="submit">چوونەژوورەوە بۆ فۆرم</button>
+            </form>
+        </div>
+
+        <!-- 2. پەڕەی فۆرم -->
+        <div id="register-section" class="section-view">
+            <h3 style="color: var(--primary-color); margin-bottom: 15px; text-align: center; font-size: 16px;">فۆرمی داخلکردن و تازەکردنەوەی زانیاری</h3>
+            <form id="data-form">
+                <div class="form-group">
+                    <label>ناوی تیم (Team)</label>
+                    <input type="text" id="team" required placeholder="ناوی تیم بنووسە">
+                </div>
+                <div class="form-group">
+                    <label>ناوی سیانی ئەندام</label>
+                    <input type="text" id="fullName" required placeholder="ناوی سیانی">
+                </div>
+                <div class="form-group">
+                    <label>ژمارە تەلەفون</label>
+                    <input type="tel" id="phone" required placeholder="0750xxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label>ژمارەی کارتی دەنگدان</label>
+                    <input type="text" id="voterCard" required placeholder="ژمارەی کارت">
+                </div>
+                <div class="form-group">
+                    <label>بنکەی دەنگدان</label>
+                    <input type="text" id="voterCenter" required placeholder="ناوی بنکە">
+                </div>
+                <div class="form-group">
+                    <label>جۆری ئەندامی</label>
+                    <input type="text" id="memberType" required placeholder="جۆری ئەندام">
+                </div>
+                <div class="form-group">
+                    <label>ناوی زانکۆ و پەیمانگا یان ئامادەیی</label>
+                    <input type="text" id="university" required placeholder="ناوی ناوەند">
+                </div>
+                <div class="form-group">
+                    <label>بەش و کۆلێج</label>
+                    <input type="text" id="college" required placeholder="بەش یان کۆلێج">
+                </div>
+                <div class="form-group">
+                    <label>پۆل یان قۆناغ</label>
+                    <input type="text" id="stage" required placeholder="قۆناغی خوێندن">
+                </div>
+                <div class="form-group">
+                    <label>نۆێنەر؟</label>
+                    <select id="rep-select" onchange="toggleRepForm()" required>
+                        <option value="نەخێر">نەخێر</option>
+                        <option value="بەڵێ">بەڵێ</option>
+                    </select>
+                </div>
+
+                <div id="rep-section" class="form-group" style="display: none;">
+                    <label>زانیاری ١٠ ناوی نۆێنەر (ناو، تەلەفون، کارت)</label>
+                    <div class="rep-container" id="rep-inputs-container"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>کاری رێکخراوی پێشتر</label>
+                    <textarea id="prevWork" rows="2" placeholder="باس لە کاری پێشووت بکە..."></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn">ناردنی داتا بۆ گۆگل شیت</button>
+            </form>
+            <button class="logout-btn" onclick="backToLogin()">چوونەدەرەوە</button>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxNFbH0mzXmUF8N2fJUlL0r2skOAHVhLjXeLttLr6ggETkptW4utfHkxbBUsW6DR4ORQw/exec';
+
+        const repContainer = document.getElementById('rep-inputs-container');
+        for (let i = 1; i <= 10; i++) {
+            repContainer.innerHTML += `
+                <div class="rep-row">
+                    <input type="text" placeholder="ناوی نۆێنەری ${i}">
+                    <input type="tel" placeholder="تەلەفونی ${i}">
+                    <input type="text" placeholder="کارتی دەنگدانی ${i}">
+                </div>
+            `;
+        }
+
+        function toggleRepForm() {
+            const repSelect = document.getElementById('rep-select').value;
+            document.getElementById('rep-section').style.display = (repSelect === 'بەڵێ') ? 'block' : 'none';
+        }
+
+        // پشکنینی پاسۆرد (edu123)
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('login-password').value;
+            if (password === "edu123") {
+                document.getElementById('login-section').classList.remove('active');
+                document.getElementById('register-section').classList.add('active');
+            } else {
+                alert('پاسۆردەکەی نووسیوتە هەڵەیە!');
+            }
+        });
+
+        function backToLogin() {
+            document.getElementById('register-section').classList.remove('active');
+            document.getElementById('login-section').classList.add('active');
+            document.getElementById('login-password').value = '';
+        }
+
+        // ناردنی فۆرم بۆ گۆگل شیت
+        document.getElementById('data-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'تکایە چاوەڕوان بە، داتاکە دەنێردرێت...';
+
+            let repsData = "";
+            if (document.getElementById('rep-select').value === 'بەڵێ') {
+                document.querySelectorAll('.rep-row').forEach((row, index) => {
+                    const inputs = row.querySelectorAll('input');
+                    if(inputs[0].value) {
+                        repsData += `(${index+1}) ${inputs[0].value} - ${inputs[1].value} - ${inputs[2].value} | `;
+                    }
+                });
+            } else {
+                repsData = "نۆێنەر نییە";
+            }
+
+            const formData = {
+                team: document.getElementById('team').value,
+                fullName: document.getElementById('fullName').value,
+                phone: document.getElementById('phone').value,
+                voterCard: document.getElementById('voterCard').value,
+                voterCenter: document.getElementById('voterCenter').value,
+                memberType: document.getElementById('memberType').value,
+                university: document.getElementById('university').value,
+                college: document.getElementById('college').value,
+                stage: document.getElementById('stage').value,
+                isRep: document.getElementById('rep-select').value,
+                repDetails: repsData,
+                prevWork: document.getElementById('prevWork').value
+            };
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData) 
+            })
+            .then(() => {
+                alert('داتاکان بە سەرکەوتوویی نێردران بۆ گۆگل شیت!');
+                document.getElementById('data-form').reset();
+                document.getElementById('rep-section').style.display = 'none';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'ناردنی داتا بۆ گۆگل شیت';
+            })
+            .catch(error => {
+                alert('هەڵەیەک ڕویدا، تکایە دووبارە هەوڵ بدەرەوە.');
+                console.error('Error!', error);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'ناردنی داتا بۆ گۆگل شیت';
+            });
+        });
+    </script>
+</body>
+</html>
